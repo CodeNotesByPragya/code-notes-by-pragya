@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Code Notes by Pragya</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f6ff;
+            margin: 0;
+            color: #292443;
+        }
+
+        header {
+            background: white;
+            padding: 25px 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px #e5e1f5;
+        }
+
+        header h1 {
+            color: #6650c8;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #6d687e;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 35px 15px;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+        }
+
+        .hero span {
+            color: #6650c8;
+        }
+
+        .search-box {
+            width: 90%;
+            max-width: 500px;
+            padding: 14px;
+            border: 1px solid #d8d1f0;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 15px;
+        }
+
+        .section-title {
+            margin: 20px 0;
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .note-card {
+            background: white;
+            padding: 22px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px #e7e3f5;
+        }
+
+        .note-card h3 {
+            color: #6650c8;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #eeeaff;
+            color: #6650c8;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .pdf-button {
+            display: inline-block;
+            margin-top: 12px;
+            margin-right: 5px;
+            padding: 11px 14px;
+            background: #6650c8;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .pdf-button:hover {
+            background: #4937a0;
+        }
+
+        .download-button {
+            background: #198754;
+        }
+
+        .empty-message {
+            display: none;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer {
+            margin-top: 45px;
+            padding: 25px 15px;
+            background: white;
+            text-align: center;
+            color: #6d687e;
+        }
+
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>💻 Code Notes by Pragya</h1>
+        <p>Your Free Coding Notes Library 📚</p>
+    </header>
+
+    <section class="hero">
+        <h2>Learn to Code, <span>One Note at a Time.</span></h2>
+
+        <p>Free programming notes for students.</p>
+
+        <input
+            type="text"
+            id="searchInput"
+            class="search-box"
+            placeholder="🔍 Search notes or subjects..."
+            oninput="searchNotes()"
+        >
+    </section>
+
+    <main class="container">
+
+        <h2 class="section-title">📚 Available Notes</h2>
+
+        <div class="notes-grid" id="notesContainer">
+
+            <!-- NOTE 1 -->
+            <div class="note-card" data-search="c programming programs">
+                <span class="badge">C Programming</span>
+
+                <h3>60 C Programs for Beginners</h3>
+
+                <p>
+                    Practice C programming with beginner-friendly
+                    programs. Useful for BCA students.
+                </p>
+
+                <!-- Replace YOUR_GOOGLE_DRIVE_FILE_ID -->
+                <a
+                    class="pdf-button"
+                    href="https://drive.google.com/file/d/17LGKe14ZXlQH9J-QfNYj2AtCvwCVgB6s"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    📖 View PDF
+                </a>
+
+                <a
+                    class="pdf-button download-button"
+                    href="https://drive.google.com/uc?export=download&id=17LGKe14ZXlQH9J-QfNYj2AtCvwCVgB6s"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    ⬇ Download
+                </a>
+            </div>
+
+            <!-- COPY THIS CARD TO ADD MORE NOTES -->
+
+        </div>
+
+        <p id="emptyMessage" class="empty-message">
+            No notes found. Try another search! 💗
+        </p>
+
+    </main>
+
+    <footer>
+        <p>Made with 💗 by Pragya</p>
+        <p>Free Notes • Learn • Practice • Grow</p>
+        <p>© 2026 Code Notes by Pragya</p>
+    </footer>
+
+    <script>
+        function searchNotes() {
+            const input = document
+                .getElementById("searchInput")
+                .value.toLowerCase();
+
+            const cards = document.querySelectorAll(".note-card");
+            let visibleCount = 0;
+
+            cards.forEach(function(card) {
+                const searchableText =
+                    card.innerText + " " +
+                    card.getAttribute("data-search");
+
+                if (searchableText.toLowerCase().includes(input)) {
+                    card.style.display = "block";
+                    visibleCount++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            document.getElementById("emptyMessage").style.display =
+                visibleCount === 0 ? "block" : "none";
+        }
+    </script>
+
+</body>
+</html>
